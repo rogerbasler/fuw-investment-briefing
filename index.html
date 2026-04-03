@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUW Investment Briefing – 3. April 2026</title>
+    <style>
+        :root {
+            --primary: #1a2942;
+            --accent: #c8a84b;
+            --accent-light: #e8c96b;
+            --bg: #0d1825;
+            --bg-card: #162030;
+            --bg-card-hover: #1e2d42;
+            --text: #e8edf5;
+            --text-muted: #8a9bb5;
+            --border: #2a3d57;
+            --aktien: #3b82f6;
+            --etf: #10b981;
+            --rohstoffe: #f59e0b;
+            --makro: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d1825 100%);
+            border-bottom: 2px solid var(--accent);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-badge {
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.1rem;
+            padding: 8px 14px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header-meta {
+            text-align: right;
+        }
+
+        .edition-badge {
+            background: rgba(200, 168, 75, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .date-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--bg) 100%);
+            padding: 60px 24px 40px;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* Podcast Player */
+        .podcast-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .podcast-player-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .podcast-player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+        }
+
+        .podcast-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .podcast-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .podcast-info h2 {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .podcast-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .podcast-duration {
+            display: inline-block;
+            background: rgba(200,168,75,0.15);
+            color: var(--accent);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 6px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        audio {
+            width: 100%;
+            height: 54px;
+            border-radius: 8px;
+            outline: none;
+            filter: invert(0);
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: var(--bg-card-hover);
+        }
+
+        .audio-wrapper {
+            background: var(--bg-card-hover);
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 48px 0 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .section-icon.aktien { background: rgba(59, 130, 246, 0.2); }
+        .section-icon.etf { background: rgba(16, 185, 129, 0.2); }
+        .section-icon.rohstoffe { background: rgba(245, 158, 11, 0.2); }
+        .section-icon.makro { background: rgba(139, 92, 246, 0.2); }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .section-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section-tag.aktien { background: rgba(59,130,246,0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+        .section-tag.etf { background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+        .section-tag.rohstoffe { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+        .section-tag.makro { background: rgba(139,92,246,0.2); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .article-number {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .article-number.aktien { background: rgba(59,130,246,0.2); color: #60a5fa; }
+        .article-number.etf { background: rgba(16,185,129,0.2); color: #34d399; }
+        .article-number.rohstoffe { background: rgba(245,158,11,0.2); color: #fbbf24; }
+        .article-number.makro { background: rgba(139,92,246,0.2); color: #a78bfa; }
+
+        .article-card h3 {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 12px;
+            padding-right: 40px;
+            line-height: 1.4;
+        }
+
+        .article-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .article-card .left-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .article-card .left-bar.aktien { background: var(--aktien); }
+        .article-card .left-bar.etf { background: var(--etf); }
+        .article-card .left-bar.rohstoffe { background: var(--rohstoffe); }
+        .article-card .left-bar.makro { background: var(--makro); }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 48px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .footer-disclaimer {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-meta {
+                text-align: center;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            .podcast-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="logo-area">
+                <div class="logo-badge">FUW</div>
+                <div class="header-title">Investment Briefing</div>
+            </div>
+            <div class="header-meta">
+                <div class="edition-badge">Ausgabe #1 · 2026</div>
+                <div class="date-label">3. April 2026</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-eyebrow">Finanz und Wirtschaft · Wöchentliches Briefing</div>
+        <h1>Die <span>10 wichtigsten</span><br>Investment-Themen</h1>
+        <p class="hero-subtitle">Aktien, ETFs, Rohstoffe und Makroökonomie – kompakt zusammengefasst für Privatanleger und Investoren.</p>
+    </section>
+
+    <!-- Podcast Player -->
+    <section class="podcast-section">
+        <div class="podcast-player-card">
+            <div class="podcast-header">
+                <div class="podcast-icon">🎙️</div>
+                <div class="podcast-info">
+                    <h2>FUW Investment Briefing – Podcast</h2>
+                    <p>Alle 10 Themen als Audio-Zusammenfassung</p>
+                    <span class="podcast-duration">⏱ ca. 6–7 Minuten</span>
+                </div>
+            </div>
+            <div class="audio-wrapper">
+                <audio controls preload="metadata">
+                    <source src="fuw_investment_briefing.mp3" type="audio/mpeg">
+                    Ihr Browser unterstützt das Audio-Element nicht.
+                </audio>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">10</div>
+                <div class="stat-label">Themen analysiert</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Bereiche abgedeckt</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">SMI</div>
+                <div class="stat-label">−0.13% (2. Apr.)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">$5100+</div>
+                <div class="stat-label">Gold (Rekordhoch)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">0.3%</div>
+                <div class="stat-label">CH-Inflation (März)</div>
+            </div>
+        </div>
+
+        <!-- AKTIEN SCHWEIZ & INTERNATIONAL -->
+        <div class="section-header">
+            <div class="section-icon aktien">📈</div>
+            <div>
+                <div class="section-title">Aktien Schweiz &amp; International</div>
+            </div>
+            <span class="section-tag aktien">Aktien</span>
+        </div>
+
+        <div class="articles-grid">
+
+            <div class="article-card">
+                <div class="left-bar aktien"></div>
+                <div class="article-number aktien">1</div>
+                <h3>KI-Angst und Jobverlust bei Spezialisten</h3>
+                <p>Die KI-Revolution am US-Arbeitsmarkt erfasst zunehmend auch hochqualifizierte Berufe wie Juristen, Softwareentwickler und Forscher. Laut Goldman Sachs könnten 6 bis 7 Prozent aller Arbeitnehmer ihren Job verlieren. Gleichzeitig gibt es Unternehmen, die bereits heute signifikant von KI-Anwendungen profitieren und Renditen erwirtschaften. Für Anleger bedeutet dies, KI-Gewinner gezielt zu identifizieren und Risiken in betroffenen Sektoren zu meiden.</p>
+            </div>
+
+            <div class="article-card">
+                <div class="left-bar aktien"></div>
+                <div class="article-number aktien">2</div>
+                <h3>Schweizer Börse plant neuen gleichgewichteten SMI</h3>
+                <p>Die Schweizer Börse SIX steht vor einer kleinen Revolution und plant die Lancierung eines gleichgewichteten SMI. Diese Neuerung soll die Dominanz der Schwergewichte reduzieren und eine breitere Marktabdeckung bieten. Anlageprodukte auf den neuen Index dürften schon bald auf den Markt kommen. Für Investoren eröffnet dies neue Möglichkeiten zur Diversifikation im Schweizer Aktienmarkt.</p>
+            </div>
+
+            <div class="article-card">
+                <div class="left-bar aktien"></div>
+                <div class="article-number aktien">3</div>
+                <h3>Softwaresektor unter Druck durch KI-Revolution</h3>
+                <p>Der Softwaresektor erlebt einen Kurskollaps, da KI die Softwareentwicklung deutlich günstiger macht und bestehende Geschäftsmodelle infrage stellt. Dennoch können Anbieter, deren Lösungen tief in die Firmenprozesse ihrer Kunden eingebettet sind, weiterhin bestehen. Anlageexperten sehen nach dem Einbruch der Bewertungen punktuell wieder attraktive Einstiegschancen. Eine selektive Titelauswahl ist hier entscheidend.</p>
+            </div>
+
+        </div>
+
+        <!-- ETFs & FONDS -->
+        <div class="section-header">
+            <div class="section-icon etf">🏦</div>
+            <div>
+                <div class="section-title">ETFs &amp; Fonds</div>
+            </div>
+            <span class="section-tag etf">ETFs &amp; Fonds</span>
+        </div>
+
+        <div class="articles-grid">
+
+            <div class="article-card">
+                <div class="left-bar etf"></div>
+                <div class="article-number etf">4</div>
+                <h3>Fondsmanager reduzieren Aktienrisiken</h3>
+                <p>Angesichts der geopolitischen Unsicherheiten bringen sich professionelle Fondsmanager in Sicherheit. Sie haben ihre Aktiengewichte reduziert und die Liquiditätsquote in den Portfolios ausgebaut. Trotz der Spannungen im Nahen Osten erwarten sie jedoch keine anhaltend hohen Ölpreise. Privatanleger könnten sich an dieser defensiveren Positionierung orientieren.</p>
+            </div>
+
+            <div class="article-card">
+                <div class="left-bar etf"></div>
+                <div class="article-number etf">5</div>
+                <h3>Bewertungscheck für ETF-Strategien</h3>
+                <p>Ein aktueller Bewertungscheck der wichtigsten Indizes liefert eine wichtige Entscheidungsgrundlage für ETF-Strategien. Er zeigt auf, welche Aktienmärkte teurer und welche günstiger geworden sind. Insbesondere Finanzwerte fallen derzeit durch ihre Dividendenstärke positiv auf. Eine Anpassung der ETF-Allokation an diese Bewertungsniveaus kann die Rendite optimieren.</p>
+            </div>
+
+            <div class="article-card">
+                <div class="left-bar etf"></div>
+                <div class="article-number etf">6</div>
+                <h3>Schwellenländer und Asien als KI-Stütze</h3>
+                <p>Fondsmanager betonen die Wichtigkeit Asiens für den globalen KI-Boom: «Ohne Asien bricht KI zusammen». Unternehmen in den Schwellenländern zeigen ein hohes Gewinnwachstum bei vergleichsweise geringen Bewertungen. Dies macht Schwellenländer-Fonds zu einer attraktiven Beimischung für technologieorientierte Portfolios.</p>
+            </div>
+
+        </div>
+
+        <!-- ROHSTOFFE -->
+        <div class="section-header">
+            <div class="section-icon rohstoffe">🥇</div>
+            <div>
+                <div class="section-title">Rohstoffe (Gold, Öl, etc.)</div>
+            </div>
+            <span class="section-tag rohstoffe">Rohstoffe</span>
+        </div>
+
+        <div class="articles-grid">
+
+            <div class="article-card">
+                <div class="left-bar rohstoffe"></div>
+                <div class="article-number rohstoffe">7</div>
+                <h3>Gold als Krisenschutz auf dem Prüfstand</h3>
+                <p>Trotz neuer Rekordhochs von über 5100 Dollar pro Feinunze wird die Rolle von Gold als sicherer Hafen hinterfragt. Verändertes Verhalten der Marktakteure und hohe Volatilität mahnen zur Vorsicht. Dennoch stützen strukturelle Faktoren und geopolitische Spannungen, wie der Nahostkrieg, die Edelmetallpreise. Anleger sollten Gold weiterhin als Diversifikator nutzen, aber aktives Risikomanagement betreiben.</p>
+            </div>
+
+            <div class="article-card">
+                <div class="left-bar rohstoffe"></div>
+                <div class="article-number rohstoffe">8</div>
+                <h3>Energiemarkt bleibt fragil</h3>
+                <p>Die Lage am Energiemarkt ist stark von den Entwicklungen im Nahen Osten geprägt. Sorgen um eine weitere Eskalation halten die Öl- und Gaspreise auf einem erhöhten Niveau, wobei der Ölpreis zeitweise wieder dreistellig notierte. Die Opec+ berät über höhere Fördermengen, um den Markt zu stabilisieren. Rohstofflastige Aktiensektoren bieten in diesem Umfeld einen gewissen Schutz für Portfolios.</p>
+            </div>
+
+        </div>
+
+        <!-- MAKROÖKONOMIE & KONJUNKTUR -->
+        <div class="section-header">
+            <div class="section-icon makro">🌐</div>
+            <div>
+                <div class="section-title">Makroökonomie &amp; Konjunktur</div>
+            </div>
+            <span class="section-tag makro">Makro</span>
+        </div>
+
+        <div class="articles-grid">
+
+            <div class="article-card">
+                <div class="left-bar makro"></div>
+                <div class="article-number makro">9</div>
+                <h3>Inflation in der Schweiz und Eurozone</h3>
+                <p>Während die Jahresteuerung in der Schweiz im März mit 0,3 Prozent nur leicht anzieht und unter den Erwartungen bleibt, treibt der Nahostkrieg die Inflation in der Eurozone deutlich. Der steigende Ölpreis setzt die Europäische Zentralbank (EZB) unter Druck, da die Teuerung weit über das Ziel hinausschiesst. Für Anleger bedeutet dies, dass Zinsentscheidungen in Europa weiterhin stark von der Energiepreisentwicklung abhängen.</p>
+            </div>
+
+            <div class="article-card">
+                <div class="left-bar makro"></div>
+                <div class="article-number makro">10</div>
+                <h3>Geopolitik dominiert die Märkte</h3>
+                <p>Der Krieg im Nahen Osten und die Spannungen mit dem Iran sorgen für anhaltende Turbulenzen an den Finanzmärkten. Experten gehen jedoch davon aus, dass militärische Eskalationen nur kurzfristig zu Börsenkorrekturen führen sollten. Die globale Industrie stellt sich derweil auf eine Kostenlawine ein, zeigt sich aber erstaunlich robust. Eine breite Absicherung und gezieltes Zugreifen bei Korrekturen bleiben das Gebot der Stunde.</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">FUW Investment Briefing</div>
+            <p class="footer-text">
+                Basierend auf Artikeln von <strong>Finanz und Wirtschaft (fuw.ch)</strong> · Ausgabe #1 · 3. April 2026
+            </p>
+            <p class="footer-disclaimer">
+                Dieses Briefing dient ausschliesslich zu Informationszwecken und stellt keine Anlageberatung dar. 
+                Alle Angaben ohne Gewähr. Quellenangaben: fuw.ch. Erstellt mit Manus AI.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
